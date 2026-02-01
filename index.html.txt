@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💖</title>
+
+<style>
+body {
+  background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Heart Rain */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear forwards;
+  color: rgba(255, 77, 109, 0.8);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+.box {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+.date {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+button {
+  font-size: 20px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#start {
+  background: #ff4d6d;
+  color: white;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: #ddd;
+  position: absolute;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="content">
+  <button id="start" onclick="startLove()">Tap to start 💖</button>
+  <div class="date">Dec 2024 💕</div>
+</div>
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Heart rain generator
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+
+function startLove() {
+  document.getElementById("music").play();
+
+  document.getElementById("content").innerHTML = `
+    <h1>💖 Will you be my Valentine? 💖</h1>
+    <button id="yes" onclick="yesClicked()">YES 💕</button>
+    <button id="no" onmouseover="moveNo()">NO 😅</button>
+    <div class="date">Dec 2024 💖</div>
+  `;
+}
+
+function moveNo() {
+  const no = document.getElementById("no");
+  no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  no.style.top = Math.random() * (window.innerHeight - 100) + "px";
+}
+
+function yesClicked() {
+  document.body.innerHTML =
+    "<h1 style='color:#ff4d6d'>Forever starts here 💍❤️<br>Dec 2024 💖</h1>";
+}
+</script>
+
+</body>
+</html>
